@@ -11,14 +11,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* cursor: none; */
+    cursor: none;
 }
 
 #canvas {
  
-    width: 100%;
+    width: 700px;
     height: 100%;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
     filter: contrast(100%);
     
 }

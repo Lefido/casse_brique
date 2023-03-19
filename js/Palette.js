@@ -3,7 +3,7 @@ export class Palette {
     constructor(game) {
         
         this.game = game
-        this.width = this.game.width * 0.12
+        this.width = this.game.width * 0.15
         this.height = this.game.height * 0.02
         this.x = (this.game.width / 2) - this.width * 0.5
         this.y = this.game.height - this.height - this.game.height * 0.02
@@ -18,8 +18,8 @@ export class Palette {
     draw(ctx) {
 
         ctx.beginPath()
-        ctx.fillStyle = "gray";
-        ctx.strokeStyle = "white"
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "gray"
         ctx.lineWidth = 2
         ctx.rect(this.x, this.y, this.width, this.height)
         ctx.fill()

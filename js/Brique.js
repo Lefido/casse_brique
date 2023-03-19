@@ -55,17 +55,17 @@ export class Brique {
             // ctx.globalAlpha = 0.8
             ctx.strokeStyle = "rgb(220, 220, 220)"
             ctx.fillStyle = this.color
+            ctx.lineWidth = 3;
         } else {
             // ctx.globalAlpha = 1
-            ctx.strokeStyle = this.color
+            ctx.strokeStyle = "white" // this.color
             ctx.fillStyle = this.color
-          
-            this.LineBig = 2
+            ctx.lineWidth = 1;
         }
 
         // ctx.strokeStyle = this.color
         // ctx.fillStyle = this.color
-        ctx.lineWidth = 2;
+        
         ctx.rect(this.x, this.y, this.width, this.height)
         ctx.fill()
         ctx.stroke()
