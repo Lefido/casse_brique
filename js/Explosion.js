@@ -17,7 +17,7 @@ export class Explosion {
         this.eY2 = this.eY1 / 2
         this.vx = Math.random() * this.eX1 - this.eX2
         this.vy =  Math.random() * this.eY1 - this.eY2
-        this.gy = 0.1
+        this.gy = 0.3
         this.numColor = 0 // Math.round(Math.random() * 100) 
         this.colorTransparence = 1
         // this.color ="hsl("+ this.numColor +",80%, 50%, 1"

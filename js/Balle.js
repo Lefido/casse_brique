@@ -5,9 +5,27 @@ export class Balle {
         this.game = game
         this.x = x
         this.y = y
-        this.size = Math.random() * 6 + 6
+        this.speedValide = true
+   
+        this.size = Math.random() * 5 + 5
         this.vx = Math.random() * 15 - 7.5
         this.vy = Math.random() * 20 - 10
+                
+        this.minSpeed = 8
+
+        while(this.speedValide) {
+
+            this.vx = Math.random() * 15 - 7.5
+            this.vy = Math.random() * 20 - 10
+
+            if (this.vx < - this.minSpeed || this.vx > this.minSpeed && 
+                this.vy < - this.minSpeed || this.vy > this.minSpeed ) {
+                this.speedValide = false
+            }
+            
+            console.log(this.ok)
+        }
+
         this.markedDeletion = false
     }
 

@@ -69,8 +69,11 @@ export class Game {
         this.brillances = this.brillances.filter(brillance => !brillance.markedDeletion)
 
         // Remplissage des briques
-        if (this.briques.length === 0) this.addBrique()
-        
+        if (this.briques.length === 0) {
+            this.addBrique()
+            this.balles = []
+            this.addBalle(this.player.x + this.player.width * 0.5, this.player.y)
+        }
 
     }
 
@@ -124,6 +127,8 @@ export class Game {
         let dy2 = balle.y - marge
         let dx1 = balle.x + marge
         let dx2 = balle.x - marge
+
+      
 
         if (dy1 >=  brique.y && dy1<= brique.y + brique.height && 
             balle.x >= brique.x && balle.x <= brique.x + brique.width)
@@ -180,6 +185,7 @@ export class Game {
                 return true
             }
 
+    
 
     }
 

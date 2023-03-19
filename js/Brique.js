@@ -16,15 +16,15 @@ export class Brique {
         this.x = x // Math.random() * (this.game.width - this.width)
         this.y = y //Math.random() * (this.game.height- this.height)
         this.origineY = this.y
-        this.gravity = 0.6
+        this.gravity = 0.5
         this.vY = 1
         this.impact = false
 
         let numBrique = Math.round(Math.random() * (this.briqueDetail.length - 1))
-        console.log(
-            numBrique,
-            this.briqueDetail[numBrique].col
-            )
+        // console.log(
+        //     numBrique,
+        //     this.briqueDetail[numBrique].col
+        //     )
 
         this.color =  this.briqueDetail[numBrique].col // `rgb(${r}, ${g}, ${b})`
         this.life = 0 // this.briqueDetail[numBrique].life
@@ -50,16 +50,21 @@ export class Brique {
 
         ctx.beginPath()
         
-        ctx.lineWidth = 1;
         if (this.impact) {
             let color = "rgb(155, 155, 155)"
-            ctx.strokeStyle = "rgb(255, 255, 255)"
-            ctx.fillStyle = color
+            // ctx.globalAlpha = 0.8
+            ctx.strokeStyle = "rgb(220, 220, 220)"
+            ctx.fillStyle = this.color
         } else {
+            // ctx.globalAlpha = 1
             ctx.strokeStyle = this.color
             ctx.fillStyle = this.color
+          
+            this.LineBig = 2
         }
-        
+
+        // ctx.strokeStyle = this.color
+        // ctx.fillStyle = this.color
         ctx.lineWidth = 2;
         ctx.rect(this.x, this.y, this.width, this.height)
         ctx.fill()
