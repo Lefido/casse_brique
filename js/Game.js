@@ -71,7 +71,7 @@ export class Game {
         // Remplissage des briques
         if (this.briques.length === 0) {
             this.addBrique()
-            this.balles = []
+            // this.balles = []
             this.addBalle(this.player.x + this.player.width * 0.5, this.player.y)
         }
 
@@ -106,13 +106,13 @@ export class Game {
 
     addBrique() {
 
-        let nbX = 13
+        let nbX = 11
         let nbY = 8
         let width = this.width / nbX
         let height = (this.height/ 3) / nbY
 
-        for (let y = 1; y < nbY; y++) {
-            for (let x = 1; x < nbX-1; x++) {
+        for (let y = 0; y < nbY; y++) {
+            for (let x = 0; x < nbX; x++) {
                 this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4))
             }
         }

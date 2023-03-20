@@ -8,6 +8,8 @@ const ctx = canvas.getContext('2d')
 canvas.width = 700 // window.innerWidth
 canvas.height = window.innerHeight
 
+const game = new Game(canvas.width, canvas.height)
+
 let canvasPosition = canvas.getBoundingClientRect()
 
 window.addEventListener('resize', () => {
@@ -18,30 +20,17 @@ window.addEventListener('resize', () => {
 
 window.addEventListener('mousedown', (e) => {
 
+
     let nbBall = 1
     for (let i=0; i<nbBall; i++){
-        game.addBalle(e.x, game.player.y - 10)
+        game.addBalle(e.x - canvasPosition.left, game.player.y - 10)
     }
     
 })
 
-const game = new Game(canvas.width, canvas.height)
-
-//     canvas.addEventListener('mousemove', (event) => {
-
-//     let x = event.x - canvasPosition.left
-//     let y = event.y - canvasPosition.top
-//     // let nbExplosion = Math.floor(Math.random() * 100 + 10)
-//     let nbExplosion = 20
-//     for (let i = 0; i < nbExplosion; i++) {
-//         game.addExplosion(x, y)
-//     }
-   
-    
-// })
-
 window.addEventListener('mousemove', (e)=> {
-    game.player.update(e.x)
+    
+    game.player.update(e.x - canvasPosition.left)
 })
 
 window.addEventListener('load', ()=> {
