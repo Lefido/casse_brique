@@ -4,6 +4,7 @@ import { Balle } from "./Balle.js"
 import { Explosion } from "./Explosion.js"
 import { Palette } from "./Palette.js"
 import { Brillance } from "./Brillance.js"
+import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact } from "./Sound.js"
 
 export class Game {
 
@@ -15,9 +16,9 @@ export class Game {
         this.briques = []
         this.explosions = []
         this.brillances = []
+        this.sounds = []
         this.addBrique()
        
-        
     }
 
     update() {
@@ -33,21 +34,15 @@ export class Game {
                 // Check collision Balle, Brique
                  if (this.checkCollisionBrique(balle, brique)) {
                     console.log("Brique Touché")
-                    brique.briqueTouche()
+                    this.addSndBriqueImpact()
                     // this.brillances.push(new Brillance(this, brique))
                     brique.addImpact()
                     if (brique.markedDeletion) {
-                        brique.briqueCasse()
+                        this.addSndBriqueCasse()
                         this.addExplosion(brique.x  + brique.width * 0.5, brique.y + brique.height * 0.5, brique)
                     } 
                  }
             })
-
-            this.balles.forEach(balle2 => {
-                if (this.checkCollisionBrique(balle, balle2)) {
-                    console.log("Balle Touche balle")
-                }
-            } )
             
         })
 
@@ -62,13 +57,24 @@ export class Game {
         this.explosions = this.explosions.filter(explosion => !explosion.markedForDeletion)
         // Check collision balle, Player
         this.balles.forEach(balle => {
-            if (this.checkCollisionPlayer(balle, this.player)) {
-                // console.log("Palette Touché")
-            }
-        })
 
+            if (this.checkCollisionPlayer(balle, this.player)) {
+                this.addSndBallePalette()
+                console.log("Palette touché")
+            }
+            // if (this.checkCollisionPlayer(balle, this.player)) {
+             
+            // }
+        })
+        // Brillance Impact
         this.brillances.forEach(brillance => brillance.update())
         this.brillances = this.brillances.filter(brillance => !brillance.markedDeletion)
+
+        // Lecture des sons
+        this.sounds.forEach(sound => {
+            sound.lecture()
+        })
+        this.sounds = this.sounds.filter(sound => !sound.markedDeletion)
 
         // Remplissage des briques
         if (this.briques.length === 0) {
@@ -99,7 +105,6 @@ export class Game {
             this.explosions.push(new Explosion(this,x, y, color))
         }
        
-       
     }
 
     addBalle(x,y) {
@@ -129,8 +134,6 @@ export class Game {
         let dy2 = balle.y - marge
         let dx1 = balle.x + marge
         let dx2 = balle.x - marge
-
-      
 
         if (dy1 >=  brique.y && dy1<= brique.y + brique.height && 
             balle.x >= brique.x && balle.x <= brique.x + brique.width)
@@ -173,70 +176,49 @@ export class Game {
         let marge = balle.size
 
         let dy1 = balle.y + marge
-        let dy2 = balle.y - marge
-        let dx1 = balle.x + marge
-        let dx2 = balle.x - marge
 
-        if (dy1 >=  palette.y && dy1<= palette.y + palette.height && 
-            balle.x >= palette.x && balle.x <= palette.x + palette.width)
-            {
+        if (balle.x >= palette.x && balle.x <= palette.x + palette.width &&
+            dy1 >= palette.y && dy1 <= palette.y + palette.height) {
 
                 if (balle.x >= this.player.x + this.player.width * 0 && balle.x <= this.player.x + this.player.width * 0.33)  {
                     console.log('Palette left')
                     balle.vx -= 2
-                    balle.impactPalette()
                 }
-                
+
                 if (balle.x >= this.player.x + this.player.width * 0.34 && balle.x <= this.player.x + this.player.width * 0.65)  {
                     console.log('palette centre')
-                    balle.vx -= balle.vx / 2
-                    balle.impactPalette()
+                    balle.vx -= balle.vx / 2 
                 }
 
                 if (balle.x >= this.player.x + this.player.width * 0.67 && balle.x <= this.player.x + this.player.width)  {
                     console.log('Palette right')
                     balle.vx += 2
-                    balle.impactPalette()
                 }
-
-            balle.vy *= -1
-            balle.y = palette.y - marge
-            return true
-        }
-
-        
-
-        if (dy2 >=  palette.y && dy2<= palette.y + palette.height && 
-            balle.x >= palette.x && balle.x <= palette.x + palette.width)
-            {
-            balle.vy *= -1
-            balle.y = palette.y + palette.height + marge
-            return true
-        }
-
-       
-
-
-        if (dx1 >= palette.x && dx1 <= palette.x + palette.width &&
-            balle.y >= palette.y && balle.y <= palette.y + palette.height)
-            {
-                balle.vx *= -1
-                balle.x = palette.x - marge
+            
+                balle.vy *= -1
                 return true
-            }
 
+        } else  return false
        
-
-        if (dx2 >= palette.x && dx2 <= palette.x + palette.width &&
-            balle.y >= palette.y && balle.y <= palette.y + palette.height)
-            {
-                balle.vx *= -1
-                balle.x = palette.x + palette.width + marge
-                return true
-            }
-
-    
 
     }
+
+    addSndBriqueImpact() {
+        this.sounds.push(new SndBriqueImpact())
+    }
+
+    addSndBriqueCasse() {
+        this.sounds.push(new SndBriqueCasse())
+    }
+
+    addSndBallePalette() {
+        this.sounds.push(new SndBallePalette())
+    }
+
+    addSndBalleMur() {
+        this.sounds.push(new SndBalleMur())
+    }
+                         
+   
 
 }

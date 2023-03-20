@@ -1,8 +1,6 @@
 
 export class Explosion {
 
-   
-
     constructor(game, x, y, brique) {
         this.game = game
         
@@ -11,7 +9,7 @@ export class Explosion {
         this.x = x //- this.size / 2 
         this.y = y // - this.size / 2
         this.markedForDeletion = false
-        this.eX1 = brique.width * 0.08
+        this.eX1 = brique.width * 0.1
         this.eX2 = this.eX1 / 2
         this.eY1 = brique.height * 0.5
         this.eY2 = this.eY1 / 2
@@ -75,6 +73,7 @@ export class Explosion {
         ctx.rotate(this.angle)
 
         ctx.fillStyle = this.color
+        ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.globalAlpha = (1 * this.size / 100) * 6
         ctx.rect(0 - this.size / 2, 0 - this.size / 2, this.size, this.size)
