@@ -9,6 +9,7 @@ import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact } from ".
 export class Game {
 
     constructor(width, height) {
+        this.bg = document.getElementById('bg_blue')
         this.width = width
         this.height = height
         this.player = new Palette(this)
@@ -86,6 +87,8 @@ export class Game {
     }
 
     draw(ctx) {
+        // Draw Bg
+        ctx.drawImage(this.bg, 0,0, this.width, this.height)
         // Draw Briques
         this.briques.forEach(brique => brique.draw(ctx))
         // Draw Brillance
@@ -114,11 +117,11 @@ export class Game {
     addBrique() {
 
         let nbX = 11
-        let nbY = 8
+        let nbY = 9
         let width = this.width / nbX
         let height = (this.height/ 3) / nbY
 
-        for (let y = 0; y < nbY; y++) {
+        for (let y = 2; y < nbY; y++) {
             for (let x = 0; x < nbX; x++) {
                 this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4))
             }
