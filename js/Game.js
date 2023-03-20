@@ -31,18 +31,20 @@ export class Game {
             balle.update()
             this.briques.forEach(brique => {
                 // Check collision Balle, Brique
-                 if (this.checkCollision(balle, brique)) {
+                 if (this.checkCollisionBrique(balle, brique)) {
                     console.log("Brique Touché")
+                    brique.briqueTouche()
                     // this.brillances.push(new Brillance(this, brique))
                     brique.addImpact()
                     if (brique.markedDeletion) {
+                        brique.briqueCasse()
                         this.addExplosion(brique.x  + brique.width * 0.5, brique.y + brique.height * 0.5, brique)
                     } 
                  }
             })
 
             this.balles.forEach(balle2 => {
-                if (this.checkCollision(balle, balle2)) {
+                if (this.checkCollisionBrique(balle, balle2)) {
                     console.log("Balle Touche balle")
                 }
             } )
@@ -60,7 +62,7 @@ export class Game {
         this.explosions = this.explosions.filter(explosion => !explosion.markedForDeletion)
         // Check collision balle, Player
         this.balles.forEach(balle => {
-            if (this.checkCollision(balle, this.player)) {
+            if (this.checkCollisionPlayer(balle, this.player)) {
                 // console.log("Palette Touché")
             }
         })
@@ -119,7 +121,7 @@ export class Game {
 
     }
 
-    checkCollision(balle, brique) {
+    checkCollisionBrique(balle, brique) {
 
         let marge = balle.size
 
@@ -133,28 +135,10 @@ export class Game {
         if (dy1 >=  brique.y && dy1<= brique.y + brique.height && 
             balle.x >= brique.x && balle.x <= brique.x + brique.width)
             {
-
-                if (balle.x >= this.player.x + this.player.width * 0 && balle.x <= this.player.x + this.player.width * 0.33)  {
-                    console.log('Palette left')
-                    balle.vx -= 2
-                }
-                
-                if (balle.x >= this.player.x + this.player.width * 0.34 && balle.x <= this.player.x + this.player.width * 0.65)  {
-                    console.log('palette centre')
-                    balle.vx -= balle.vx / 2
-                }
-
-                if (balle.x >= this.player.x + this.player.width * 0.67 && balle.x <= this.player.x + this.player.width)  {
-                    console.log('Palette right')
-                    balle.vx += 2
-                }
-
             balle.vy *= -1
             balle.y = brique.y - marge
             return true
         }
-
-        
 
         if (dy2 >=  brique.y && dy2<= brique.y + brique.height && 
             balle.x >= brique.x && balle.x <= brique.x + brique.width)
@@ -164,9 +148,6 @@ export class Game {
             return true
         }
 
-       
-
-
         if (dx1 >= brique.x && dx1 <= brique.x + brique.width &&
             balle.y >= brique.y && balle.y <= brique.y + brique.height)
             {
@@ -175,13 +156,82 @@ export class Game {
                 return true
             }
 
-       
-
         if (dx2 >= brique.x && dx2 <= brique.x + brique.width &&
             balle.y >= brique.y && balle.y <= brique.y + brique.height)
             {
                 balle.vx *= -1
                 balle.x = brique.x + brique.width + marge
+                return true
+            }
+
+    
+
+    }
+
+    checkCollisionPlayer(balle, palette) {
+
+        let marge = balle.size
+
+        let dy1 = balle.y + marge
+        let dy2 = balle.y - marge
+        let dx1 = balle.x + marge
+        let dx2 = balle.x - marge
+
+        if (dy1 >=  palette.y && dy1<= palette.y + palette.height && 
+            balle.x >= palette.x && balle.x <= palette.x + palette.width)
+            {
+
+                if (balle.x >= this.player.x + this.player.width * 0 && balle.x <= this.player.x + this.player.width * 0.33)  {
+                    console.log('Palette left')
+                    balle.vx -= 2
+                    balle.impactPalette()
+                }
+                
+                if (balle.x >= this.player.x + this.player.width * 0.34 && balle.x <= this.player.x + this.player.width * 0.65)  {
+                    console.log('palette centre')
+                    balle.vx -= balle.vx / 2
+                    balle.impactPalette()
+                }
+
+                if (balle.x >= this.player.x + this.player.width * 0.67 && balle.x <= this.player.x + this.player.width)  {
+                    console.log('Palette right')
+                    balle.vx += 2
+                    balle.impactPalette()
+                }
+
+            balle.vy *= -1
+            balle.y = palette.y - marge
+            return true
+        }
+
+        
+
+        if (dy2 >=  palette.y && dy2<= palette.y + palette.height && 
+            balle.x >= palette.x && balle.x <= palette.x + palette.width)
+            {
+            balle.vy *= -1
+            balle.y = palette.y + palette.height + marge
+            return true
+        }
+
+       
+
+
+        if (dx1 >= palette.x && dx1 <= palette.x + palette.width &&
+            balle.y >= palette.y && balle.y <= palette.y + palette.height)
+            {
+                balle.vx *= -1
+                balle.x = palette.x - marge
+                return true
+            }
+
+       
+
+        if (dx2 >= palette.x && dx2 <= palette.x + palette.width &&
+            balle.y >= palette.y && balle.y <= palette.y + palette.height)
+            {
+                balle.vx *= -1
+                balle.x = palette.x + palette.width + marge
                 return true
             }
 

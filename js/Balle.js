@@ -6,6 +6,8 @@ export class Balle {
         this.x = x
         this.y = y
         this.speedValide = true
+        this.sndPalette = new Audio('./sounds/impact_palette.flac')
+        this.sndMur = new Audio('./sounds/impact_mur.wav')
    
         this.size = Math.random() * 5 + 5
         this.vx = Math.random() * 15 - 7.5
@@ -38,6 +40,7 @@ export class Balle {
             if (this.x + this.size > this.game.width) this.x = this.game.width - this.size
             else this.x = this.size
             this.vx *= -1
+            this.impactMur()
         }
 
         if (this.y < 0 + this.size) {
@@ -45,6 +48,7 @@ export class Balle {
             if (this.y > this.size) this.y = this.game.height - this.size
             else this.y = this.size
             this.vy *= -1
+            this.impactMur()
         }
 
         if (this.y > this.game.height) {
@@ -71,6 +75,14 @@ export class Balle {
         ctx.stroke()
         ctx.closePath()
 
+    }
+
+    impactPalette() {
+        this.sndPalette.play()
+    }
+
+    impactMur() {
+        this.sndMur.play()
     }
 
 

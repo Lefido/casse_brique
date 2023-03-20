@@ -19,6 +19,8 @@ export class Brique {
         this.gravity = 0.5
         this.vY = 1
         this.impact = false
+        this.sndTouche = new Audio('./sounds/brique_touche.mp3')
+        this.sndCasse = new Audio('./sounds/brique_casse.mp3')
 
         let numBrique = Math.round(Math.random() * (this.briqueDetail.length - 1))
         // console.log(
@@ -100,8 +102,14 @@ export class Brique {
             this.impact = true
         } 
        
-        
+    }
 
+    briqueTouche() {
+        this.sndTouche.play()
+    }
+
+    briqueCasse() {
+        this.sndCasse.play()
     }
 
 }
