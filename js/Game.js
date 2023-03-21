@@ -4,7 +4,7 @@ import { Balle } from "./Balle.js"
 import { Explosion } from "./Explosion.js"
 import { Palette } from "./Palette.js"
 import { Brillance } from "./Brillance.js"
-import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact } from "./Sound.js"
+import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndHono } from "./Sound.js"
 
 export class Game {
 
@@ -221,7 +221,9 @@ export class Game {
     addSndBalleMur() {
         this.sounds.push(new SndBalleMur())
     }
-                         
-   
 
+    addSndHoNo() {
+        this.sounds.push(new SndHono())
+    }
+                         
 }

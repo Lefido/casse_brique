@@ -47,3 +47,12 @@ export class SndBallePalette extends Sound {
     }
   
 }
+
+export class SndHono extends Sound {
+    constructor() {
+        super() 
+        this.sound = new Audio("./sounds/oh_no.mp3")
+    
+    }
+  
+}

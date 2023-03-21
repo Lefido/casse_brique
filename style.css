@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* cursor: none; */
+  
 }
 
 img {
@@ -26,5 +26,6 @@ img {
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     filter: contrast(100%);
+    cursor: none;
     
 }
