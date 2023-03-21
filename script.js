@@ -5,19 +5,17 @@ import { Balle } from "./js/Balle.js"
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 
-canvas.width = window.innerWidth
+canvas.width = 700 // window.innerWidth
 canvas.height = window.innerHeight
 
 const game = new Game(canvas.width, canvas.height)
 
 let canvasPosition = canvas.getBoundingClientRect()
 
-
-
 window.addEventListener('load', ()=> {
 
     window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth
+        canvas.width = 700 // window.innerWidth
         canvas.height = window.innerHeight
         this.game.width = canvas.width
         this.game.height = canvas.height
