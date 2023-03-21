@@ -10,6 +10,7 @@ canvas.height = window.innerHeight
 
 const game = new Game(canvas.width, canvas.height)
 
+
 let canvasPosition = canvas.getBoundingClientRect()
 
 window.addEventListener('load', ()=> {

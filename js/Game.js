@@ -10,6 +10,8 @@ export class Game {
 
     constructor(width, height) {
         this.bg = document.getElementById('bg_blue')
+        this.music = new Audio('./sounds/cyber-attack.mp3')
+        this.playMusic()
         this.width = width
         this.height = height
         this.player = new Palette(this)
@@ -204,6 +206,10 @@ export class Game {
         } else  return false
        
 
+    }
+
+    playMusic() {
+        this.music.play()
     }
 
     addSndBriqueImpact() {
