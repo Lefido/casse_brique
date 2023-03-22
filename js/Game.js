@@ -13,7 +13,7 @@ export class Game {
         this.bg = bg[rnd]
 
         this.music = new Audio('./sounds/cyber-attack.mp3')
-        // this.playMusic()
+        this.playMusic()
         this.width = width
         this.height = height
         this.player = new Palette(this)

@@ -68,19 +68,19 @@ export class Brique {
         ctx.stroke()
         ctx.closePath()
 
-        ctx.beginPath()
-        ctx.font = '15px serif';
-        ctx.textAlign = 'center'
-        ctx.fillStyle = "black"
-        ctx.fillText(this.life + "/" + this.lifeMAx, this.x + this.width * 0.5 + 1 , this.y + this.height * 0.7 + 1)
-        ctx.closePath()
+        // ctx.beginPath()
+        // ctx.font = '15px serif';
+        // ctx.textAlign = 'center'
+        // ctx.fillStyle = "black"
+        // ctx.fillText(this.life + "/" + this.lifeMAx, this.x + this.width * 0.5 + 1 , this.y + this.height * 0.7 + 1)
+        // ctx.closePath()
 
-        ctx.beginPath()
-        ctx.font = '15px serif';
-        ctx.textAlign = 'center'
-        ctx.fillStyle = "white"
-        ctx.fillText(this.life + "/" + this.lifeMAx, this.x + this.width * 0.5 , this.y + this.height * 0.7)
-        ctx.closePath()
+        // ctx.beginPath()
+        // ctx.font = '15px serif';
+        // ctx.textAlign = 'center'
+        // ctx.fillStyle = "white"
+        // ctx.fillText(this.life + "/" + this.lifeMAx, this.x + this.width * 0.5 , this.y + this.height * 0.7)
+        // ctx.closePath()
        
         
 
