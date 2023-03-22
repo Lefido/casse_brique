@@ -33,8 +33,13 @@ window.addEventListener('load', ()=> {
     })
     
     window.addEventListener('mousemove', (e)=> {
+
+        let mX = e.x - canvasPosition.left
+
+        if (mX <= 0) mX = 0
+        if (mX >= game.width) mX = game.width
         
-        game.player.update(e.x - canvasPosition.left)
+        game.player.update(mX)
     })
 
     function animate() {

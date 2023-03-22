@@ -3,7 +3,7 @@ export class Explosion {
 
     constructor(game, x, y, brique) {
         this.game = game
-        
+        this.image = brique.image
         this.size = Math.random() * 20 + 2
 
         this.x = x //- this.size / 2 
@@ -76,7 +76,8 @@ export class Explosion {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.globalAlpha = (1 * this.size / 100) * 6
-        ctx.rect(0 - this.size / 2, 0 - this.size / 2, this.size, this.size)
+        // ctx.rect(0 - this.size / 2, 0 - this.size / 2, this.size, this.size)
+        ctx.drawImage(this.image, 0 - this.size / 2,  0 - this.size / 2, this.size, this.size )
         ctx.stroke()
         ctx.fill()
         ctx.closePath()

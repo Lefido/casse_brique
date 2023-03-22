@@ -4,10 +4,8 @@ export class Brique {
 
         this.briqueDetail = [
             {col: "blue", life: 1 }, {col: "green", life: 1 },
-            {col: "yellow", life: 2 }, {col: "red", life: 2 },
-            {col: "orange", life: 3 }, {col: "gray", life: 3 },
-            {col: "purple", life: 4 }, {col: "Lime", life: 4 },
-            {col: "LightSeaGreen", life: 5 }, {col: "LightSteelBlue", life: 5 },
+            {col: "gray", life: 2 }, {col: "purple", life: 2 },
+            {col: "red", life: 3 }, {col: "yellow", life: 3 },
            ]
 
         this.game = game
@@ -20,13 +18,11 @@ export class Brique {
         this.vY = 1
         this.impact = false
 
-        let numBrique = Math.round(Math.random() * (this.briqueDetail.length - 1))
-        // console.log(
-        //     numBrique,
-        //     this.briqueDetail[numBrique].col
-        //     )
-
+        let numBrique = Math.floor(Math.random() * (this.briqueDetail.length))
+        let briques = document.querySelectorAll(".brique")
         this.color =  this.briqueDetail[numBrique].col // `rgb(${r}, ${g}, ${b})`
+        this.image = briques[numBrique]
+        console.log(briques[numBrique])
         this.life = 0 // this.briqueDetail[numBrique].life
         this.lifeMAx = this.briqueDetail[numBrique].life
         this.markedDeletion = false
@@ -66,7 +62,8 @@ export class Brique {
         // ctx.strokeStyle = this.color
         // ctx.fillStyle = this.color
         
-        ctx.rect(this.x, this.y, this.width, this.height)
+        // ctx.rect(this.x, this.y, this.width, this.height)
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         ctx.fill()
         ctx.stroke()
         ctx.closePath()

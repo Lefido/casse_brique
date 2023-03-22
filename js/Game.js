@@ -3,22 +3,23 @@ import { Brique } from "./Brique.js"
 import { Balle } from "./Balle.js"
 import { Explosion } from "./Explosion.js"
 import { Palette } from "./Palette.js"
-import { Brillance } from "./Brillance.js"
 import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndHono } from "./Sound.js"
 
 export class Game {
 
     constructor(width, height) {
-        this.bg = document.getElementById('bg_blue')
+        let bg = document.querySelectorAll('.bg')
+        let rnd = Math.floor(Math.random() * bg.length)
+        this.bg = bg[rnd]
+
         this.music = new Audio('./sounds/cyber-attack.mp3')
-        this.playMusic()
+        // this.playMusic()
         this.width = width
         this.height = height
         this.player = new Palette(this)
         this.balles = []
         this.briques = []
         this.explosions = []
-        this.brillances = []
         this.sounds = []
         this.addBrique()
        
@@ -36,9 +37,7 @@ export class Game {
             this.briques.forEach(brique => {
                 // Check collision Balle, Brique
                  if (this.checkCollisionBrique(balle, brique)) {
-                    console.log("Brique Touché")
                     this.addSndBriqueImpact()
-                    // this.brillances.push(new Brillance(this, brique))
                     brique.addImpact()
                     if (brique.markedDeletion) {
                         this.addSndBriqueCasse()
@@ -63,16 +62,12 @@ export class Game {
 
             if (this.checkCollisionPlayer(balle, this.player)) {
                 this.addSndBallePalette()
-                console.log("Palette touché")
             }
             // if (this.checkCollisionPlayer(balle, this.player)) {
              
             // }
         })
-        // Brillance Impact
-        this.brillances.forEach(brillance => brillance.update())
-        this.brillances = this.brillances.filter(brillance => !brillance.markedDeletion)
-
+       
         // Lecture des sons
         this.sounds.forEach(sound => {
             sound.lecture()
@@ -93,8 +88,6 @@ export class Game {
         ctx.drawImage(this.bg, 0,0, this.width, this.height)
         // Draw Briques
         this.briques.forEach(brique => brique.draw(ctx))
-        // Draw Brillance
-        this.brillances.forEach(brillance => brillance.draw(ctx))
         // Draw Explosion
         this.explosions.forEach(explosion => explosion.draw(ctx))
         // Draw Balles
@@ -186,17 +179,14 @@ export class Game {
             dy1 >= palette.y && dy1 <= palette.y + palette.height) {
 
                 if (balle.x >= this.player.x + this.player.width * 0 && balle.x <= this.player.x + this.player.width * 0.33)  {
-                    console.log('Palette left')
                     balle.vx -= 2
                 }
 
                 if (balle.x >= this.player.x + this.player.width * 0.34 && balle.x <= this.player.x + this.player.width * 0.65)  {
-                    console.log('palette centre')
                     balle.vx -= balle.vx / 2 
                 }
 
                 if (balle.x >= this.player.x + this.player.width * 0.67 && balle.x <= this.player.x + this.player.width)  {
-                    console.log('Palette right')
                     balle.vx += 2
                 }
             

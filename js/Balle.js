@@ -23,7 +23,6 @@ export class Balle {
                 this.speedValide = false
             }
             
-            console.log(this.ok)
         }
 
         this.markedDeletion = false
@@ -51,7 +50,6 @@ export class Balle {
         }
 
         if (this.y > this.game.height) {
-            console.log("Balle morte")
             this.markedDeletion = true
             this.game.addSndHoNo()
         }
