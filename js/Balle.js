@@ -51,7 +51,7 @@ export class Balle {
 
         if (this.y > this.game.height) {
             this.markedDeletion = true
-            this.game.addSndHoNo()
+            this.game.addSndBallOut()
         }
 
         

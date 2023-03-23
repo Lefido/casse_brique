@@ -3,7 +3,7 @@ import { Brique } from "./Brique.js"
 import { Balle } from "./Balle.js"
 import { Explosion } from "./Explosion.js"
 import { Palette } from "./Palette.js"
-import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndHono } from "./Sound.js"
+import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndballOut } from "./Sound.js"
 
 export class Game {
 
@@ -13,7 +13,8 @@ export class Game {
         this.bg = bg[rnd]
 
         this.music = new Audio('./sounds/cyber-attack.mp3')
-        this.playMusic()
+        this.music.loop = true
+        // this.playMusic()
         this.width = width
         this.height = height
         this.player = new Palette(this)
@@ -116,7 +117,7 @@ export class Game {
         let width = this.width / nbX
         let height = (this.height/ 3) / nbY
 
-        for (let y = 2; y < nbY; y++) {
+        for (let y = 1; y < nbY; y++) {
             for (let x = 0; x < nbX; x++) {
                 this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4))
             }
@@ -180,14 +181,17 @@ export class Game {
 
                 if (balle.x >= this.player.x + this.player.width * 0 && balle.x <= this.player.x + this.player.width * 0.33)  {
                     balle.vx -= 2
+                    balle.y = this.player.y - marge
                 }
 
                 if (balle.x >= this.player.x + this.player.width * 0.34 && balle.x <= this.player.x + this.player.width * 0.65)  {
                     balle.vx -= balle.vx / 2 
+                    balle.y = this.player.y - marge
                 }
 
                 if (balle.x >= this.player.x + this.player.width * 0.67 && balle.x <= this.player.x + this.player.width)  {
                     balle.vx += 2
+                    balle.y = this.player.y - marge
                 }
             
                 balle.vy *= -1
@@ -218,8 +222,8 @@ export class Game {
         this.sounds.push(new SndBalleMur())
     }
 
-    addSndHoNo() {
-        this.sounds.push(new SndHono())
+    addSndBallOut() {
+        this.sounds.push(new SndballOut())
     }
                          
 }
