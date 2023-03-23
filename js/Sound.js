@@ -48,10 +48,10 @@ export class SndBallePalette extends Sound {
   
 }
 
-export class SndHono extends Sound {
+export class SndballOut extends Sound {
     constructor() {
         super() 
-        this.sound = new Audio("./sounds/oh_no.mp3")
+        this.sound = new Audio("./sounds/ball_out.mp3")
     
     }
   

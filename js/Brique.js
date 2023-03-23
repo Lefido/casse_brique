@@ -3,9 +3,9 @@ export class Brique {
     constructor(game, x, y, width, height) {
 
         this.briqueDetail = [
-            {col: "blue", life: 1 }, {col: "green", life: 1 },
-            {col: "gray", life: 2 }, {col: "purple", life: 2 },
-            {col: "red", life: 3 }, {col: "yellow", life: 3 },
+            {col: "blue", life: 1 }, {col: "green", life: 2 },
+            {col: "gray", life: 3 }, {col: "purple", life: 4 },
+            {col: "red", life: 5 }, {col: "yellow", life: 6 },
            ]
 
         this.game = game
@@ -22,7 +22,7 @@ export class Brique {
         let briques = document.querySelectorAll(".brique")
         this.color =  this.briqueDetail[numBrique].col // `rgb(${r}, ${g}, ${b})`
         this.image = briques[numBrique]
-        console.log(briques[numBrique])
+        // console.log(briques[numBrique])
         this.life = 0 // this.briqueDetail[numBrique].life
         this.lifeMAx = this.briqueDetail[numBrique].life
         this.markedDeletion = false
@@ -64,6 +64,22 @@ export class Brique {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         ctx.fill()
         ctx.stroke()
+        ctx.closePath()
+
+        ctx.beginPath()
+        if (!this.impact) {
+            ctx.font = "11px serif"
+        } else {
+            ctx.font = "25px serif"
+        }
+      
+        ctx.fillStyle  ="black"
+        ctx.textAlign = "center"
+        ctx.fillText(this.lifeMAx - this.life, this.x + this.width * 0.5 + 1, this.y + this.height * 0.6 + 1)
+        
+        ctx.fillStyle  ="white"
+        ctx.textAlign = "center"
+        ctx.fillText(this.lifeMAx - this.life, this.x + this.width * 0.5, this.y + this.height * 0.6)
         ctx.closePath()
        
     }
