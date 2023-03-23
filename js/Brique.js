@@ -3,9 +3,9 @@ export class Brique {
     constructor(game, x, y, width, height) {
 
         this.briqueDetail = [
-            {col: "blue", life: 1 }, {col: "green", life: 1 },
-            {col: "gray", life: 2 }, {col: "purple", life: 2 },
-            {col: "red", life: 3 }, {col: "yellow", life: 3 },
+            {col: "blue", life: 1 }, {col: "green", life: 2 },
+            {col: "gray", life: 3 }, {col: "purple", life: 4 },
+            {col: "red", life: 5 }, {col: "yellow", life: 6 },
            ]
 
         this.game = game
