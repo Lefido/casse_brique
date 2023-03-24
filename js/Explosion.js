@@ -62,13 +62,8 @@ export class Explosion {
     
     draw(ctx) {
 
-       
         ctx.save()
-
-        
-
         ctx.beginPath()
-
         ctx.translate(this.x, this.y)
         ctx.rotate(this.angle)
 

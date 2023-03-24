@@ -54,8 +54,6 @@ export class Balle {
             this.game.addSndBallOut()
         }
 
-        
-
     }
 
     draw(ctx) {
