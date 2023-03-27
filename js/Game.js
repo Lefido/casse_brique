@@ -64,9 +64,6 @@ export class Game {
             if (this.checkCollisionPlayer(balle, this.player)) {
                 this.addSndBallePalette()
             }
-            // if (this.checkCollisionPlayer(balle, this.player)) {
-             
-            // }
         })
        
         // Lecture des sons
