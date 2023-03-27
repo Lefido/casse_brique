@@ -14,8 +14,8 @@ export class Brique {
         this.width = width //  Math.random() * 150 + 40
         this.height = height // Math.random() * 10  + 10
         this.x = x // Math.random() * (this.game.width - this.width)
-        this.y = y //Math.random() * (this.game.height- this.height)
-        this.origineY = this.y
+        this.y = - (height/20) * y/2 //Math.random() * (this.game.height- this.height)
+        this.origineY = y // this.y
         this.gravity = 0.5
         this.vY = 1
         this.impact = false
