@@ -48,10 +48,19 @@ export class SndBallePalette extends Sound {
   
 }
 
-export class SndballOut extends Sound {
+export class SndBallOut extends Sound {
     constructor() {
         super() 
         this.sound = new Audio("./sounds/ball_out.mp3")
+    
+    }
+  
+}
+
+export class SndLevelUp extends Sound {
+    constructor() {
+        super() 
+        this.sound = new Audio("./sounds/level_up.mp3")
     
     }
   

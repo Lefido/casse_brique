@@ -3,7 +3,7 @@ import { Brique } from "./Brique.js"
 import { Balle } from "./Balle.js"
 import { Explosion } from "./Explosion.js"
 import { Palette } from "./Palette.js"
-import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndballOut } from "./Sound.js"
+import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndBallOut, SndLevelUp } from "./Sound.js"
 import { tableaux } from "./Tableau.js"
 
 export class Game {
@@ -107,6 +107,8 @@ export class Game {
     }
 
     addBrique() {
+
+        this.addSndLevelUp()
 
         let nbX = 11
         let nbY = 11
@@ -230,7 +232,11 @@ export class Game {
     }
 
     addSndBallOut() {
-        this.sounds.push(new SndballOut())
+        this.sounds.push(new SndBallOut())
+    }
+
+    addSndLevelUp() {
+        this.sounds.push(new SndLevelUp())
     }
 
     changeBackGround() {
