@@ -60,7 +60,7 @@ export class SndBallOut extends Sound {
 export class SndLevelUp extends Sound {
     constructor() {
         super() 
-        this.sound = new Audio("./sounds/level.mp3")
+        this.sound = new Audio("./sounds/next_niveau.mp3")
     
     }
   
