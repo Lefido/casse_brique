@@ -75,11 +75,11 @@ export class Brique {
       
         ctx.fillStyle  ="black"
         ctx.textAlign = "center"
-        ctx.fillText(this.lifeMAx - this.life, this.x + this.width * 0.5 + 1, this.y + this.height * 0.7 + 1)
+        ctx.fillText(this.lifeMAx - this.life, this.x + this.width * 0.5 + 1, this.y + this.height * 0.6 + 1)
         
         ctx.fillStyle  ="white"
         ctx.textAlign = "center"
-        ctx.fillText(this.lifeMAx - this.life, this.x + this.width * 0.5, this.y + this.height * 0.7)
+        ctx.fillText(this.lifeMAx - this.life, this.x + this.width * 0.5, this.y + this.height * 0.6)
         ctx.closePath()
        
     }
