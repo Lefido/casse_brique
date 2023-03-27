@@ -1,11 +1,13 @@
 
 export class Brique {
-    constructor(game, x, y, width, height) {
+    constructor(game, x, y, width, height, numBrique) {
+
+        this.numBrique = numBrique
 
         this.briqueDetail = [
-            {col: "blue", life: 1 }, {col: "green", life: 2 },
-            {col: "gray", life: 3 }, {col: "purple", life: 4 },
-            {col: "red", life: 5 }, {col: "yellow", life: 6 },
+            {life: 1 }, {life: 2 },
+            {life: 3 }, {life: 4 },
+            {life: 5 }, {life: 6 },
            ]
 
         this.game = game
@@ -18,12 +20,10 @@ export class Brique {
         this.vY = 1
         this.impact = false
 
-        let numBrique = Math.floor(Math.random() * (this.briqueDetail.length))
         let briques = document.querySelectorAll(".brique")
-        this.color =  this.briqueDetail[numBrique].col // `rgb(${r}, ${g}, ${b})`
         this.image = briques[numBrique]
-        // console.log(briques[numBrique])
-        this.life = 0 // this.briqueDetail[numBrique].life
+        this.life = 0
+        // console.log(this.briqueDetail[numBrique].life)
         this.lifeMAx = this.briqueDetail[numBrique].life
         this.markedDeletion = false
 
@@ -50,7 +50,7 @@ export class Brique {
             let color = "rgb(155, 155, 155)"
             // ctx.globalAlpha = 0.8
             ctx.strokeStyle = "rgb(220, 220, 220)"
-            ctx.fillStyle = this.color
+            // ctx.fillStyle = this.color
             ctx.lineWidth = 3;
         } else {
             // ctx.globalAlpha = 1

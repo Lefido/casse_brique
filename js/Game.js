@@ -4,10 +4,15 @@ import { Balle } from "./Balle.js"
 import { Explosion } from "./Explosion.js"
 import { Palette } from "./Palette.js"
 import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndballOut } from "./Sound.js"
+import { tableaux } from "./Tableau.js"
 
 export class Game {
 
     constructor(width, height) {
+
+        this.tableaux = tableaux
+        this.numTableau = 0
+        console.log(this.tableaux[this.numTableau])
         let bg = document.querySelectorAll('.bg')
         let rnd = Math.floor(Math.random() * bg.length)
         this.bg = bg[rnd]
@@ -74,9 +79,15 @@ export class Game {
 
         // Remplissage des briques
         if (this.briques.length === 0) {
+
             this.addBrique()
             // this.balles = []
-            this.addBalle(this.player.x + this.player.width * 0.5, this.player.y)
+            if (this.briques.length != 0 ) {
+                this.addBalle(this.player.x + this.player.width * 0.5, this.player.y)
+
+            }
+
+
         }
 
     }
@@ -110,15 +121,26 @@ export class Game {
     addBrique() {
 
         let nbX = 11
-        let nbY = 9
+        let nbY = 11
         let width = this.width / nbX
-        let height = (this.height/ 3) / nbY
+        let height = (this.height/ 2) / nbY
+        let numBrique = 0
 
-        for (let y = 1; y < nbY; y++) {
+        for (let y = 0; y < nbY; y++) {
             for (let x = 0; x < nbX; x++) {
-                this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4))
+
+                console.log(this.tableaux[this.numTableau][numBrique])
+                let valBrique = this.tableaux[this.numTableau][numBrique]
+                if (valBrique != 0) {
+                    this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4, valBrique-1))
+                }
+               
+                numBrique++
             }
         }
+
+        this.numTableau++
+        if (this.numTableau > this.tableaux.length) this.numTableau = 0
 
     }
 
