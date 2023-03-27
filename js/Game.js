@@ -8,9 +8,9 @@ import { SndBalleMur, SndBallePalette, SndBriqueCasse, SndBriqueImpact, SndballO
 export class Game {
 
     constructor(width, height) {
-        let bg = document.querySelectorAll('.bg')
-        let rnd = Math.floor(Math.random() * bg.length)
-        this.bg = bg[rnd]
+        this.listBg = document.querySelectorAll('.bg')
+        let rnd = Math.floor(Math.random() * this.listBg.length)
+        this.bg = this.listBg[rnd]
 
         this.music = new Audio('./sounds/cyber-attack.mp3')
         this.music.loop = true
@@ -29,10 +29,8 @@ export class Game {
     update() {
 
         // Update Brique 
-
         this.briques.forEach(brique => brique.update())
-
-        // Move Balle
+        // Update Ball
         this.balles.forEach(balle => {
             balle.update()
             this.briques.forEach(brique => {
@@ -49,12 +47,10 @@ export class Game {
             
         })
 
-        // Supprime les balles
+        // Delete ball dead
         this.balles = this.balles.filter(balle => !balle.markedDeletion)
-        // Supprime les brique
+        // Delete brique dead
         this.briques = this.briques.filter(brique => !brique.markedDeletion)
-        // Update balles
-        this.balles = this.balles.filter(balle => !balle.dead)
         // Update Explosion
         this.explosions.forEach(explosion => explosion.update())
         this.explosions = this.explosions.filter(explosion => !explosion.markedForDeletion)
@@ -77,7 +73,9 @@ export class Game {
 
         // Remplissage des briques
         if (this.briques.length === 0) {
-            this.addBrique()
+            this.changeBackGround()
+            setTimeout(this.addBrique(), 5000)
+            
             // this.balles = []
             this.addBalle(this.player.x + this.player.width * 0.5, this.player.y)
         }
@@ -117,7 +115,7 @@ export class Game {
         let width = this.width / nbX
         let height = (this.height/ 3) / nbY
 
-        for (let y = 1; y < nbY; y++) {
+        for (let y = 1; y < nbY + 1; y++) {
             for (let x = 0; x < nbX; x++) {
                 this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4))
             }
@@ -165,8 +163,6 @@ export class Game {
                 balle.x = brique.x + brique.width + marge
                 return true
             }
-
-    
 
     }
 
@@ -224,6 +220,11 @@ export class Game {
 
     addSndBallOut() {
         this.sounds.push(new SndballOut())
+    }
+
+    changeBackGround() {
+        let rnd = Math.floor(Math.random() * this.listBg.length)
+        this.bg = this.listBg[rnd]
     }
                          
 }
