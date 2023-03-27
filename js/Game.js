@@ -126,10 +126,12 @@ export class Game {
         let height = (this.height/ 2) / nbY
         let numBrique = 0
 
+        console.log("Tableau en cours",this.numTableau)
+
         for (let y = 0; y < nbY; y++) {
             for (let x = 0; x < nbX; x++) {
 
-                console.log(this.tableaux[this.numTableau][numBrique])
+                // console.log(this.tableaux[this.numTableau][numBrique])
                 let valBrique = this.tableaux[this.numTableau][numBrique]
                 if (valBrique != 0) {
                     this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4, valBrique-1))
@@ -141,6 +143,8 @@ export class Game {
 
         this.numTableau++
         if (this.numTableau > this.tableaux.length) this.numTableau = 0
+
+        console.log("Prochain Tableau",this.numTableau)
 
     }
 
