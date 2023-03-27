@@ -12,7 +12,8 @@ export class Game {
         this.listBg = document.querySelectorAll('.bg')
         let rnd = Math.floor(Math.random() * this.listBg.length)
         this.bg = this.listBg[rnd]
-
+        this.tableaux = tableaux
+        this.numTableau = 0
         this.music = new Audio('./sounds/cyber-attack.mp3')
         this.music.loop = true
         // this.playMusic()
@@ -72,14 +73,8 @@ export class Game {
         // Remplissage des briques
         if (this.briques.length === 0) {
             this.changeBackGround()
-            setTimeout(this.addBrique(), 5000)
-            
-            // this.balles = []
-            if (this.briques.length != 0 ) {
-                this.addBalle(this.player.x + this.player.width * 0.5, this.player.y)
-
-            }
-
+            this.balles = []
+            this.addBrique()
 
         }
 
@@ -133,7 +128,7 @@ export class Game {
         }
 
         this.numTableau++
-        if (this.numTableau > this.tableaux.length) this.numTableau = 0
+        if (this.numTableau >= this.tableaux.length) this.numTableau = 0
 
         console.log("Prochain Tableau",this.numTableau)
 
