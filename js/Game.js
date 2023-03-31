@@ -116,13 +116,13 @@ export class Game {
         let height = (this.height/ 2) / nbY
         let numBrique = 0
 
-        for (let y = 1; y < nbY + 1; y++) {
+        for (let y = 0; y < nbY; y++) {
             for (let x = 0; x < nbX; x++) {
 
                 // console.log(this.tableaux[this.numTableau][numBrique])
                 let valBrique = this.tableaux[this.numTableau][numBrique]
                 if (valBrique != 0) {
-                    this.briques.push(new Brique(this, x * width + 2, y * height + 2, width - 4 , height - 4, valBrique-1))
+                    this.briques.push(new Brique(this, x * width + 1, y * height + 1, width - 2 , height - 2, valBrique-1))
                 }
                
                 numBrique++
@@ -138,7 +138,7 @@ export class Game {
 
     checkCollisionBrique(balle, brique) {
 
-        let marge = balle.size
+        let marge = balle.size + balle.size / 2
 
         let dy1 = balle.y + marge
         let dy2 = balle.y - marge
@@ -181,7 +181,7 @@ export class Game {
 
     checkCollisionPlayer(balle, palette) {
 
-        let marge = balle.size
+        let marge = balle.size + balle.size / 2
 
         let dy1 = balle.y + marge
 

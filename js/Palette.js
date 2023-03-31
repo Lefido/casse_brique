@@ -3,7 +3,7 @@ export class Palette {
     constructor(game) {
         
         this.game = game
-        this.width = this.game.width * 0.15
+        this.width = this.game.width * 0.18
         this.height = this.game.height * 0.03
         this.x = (this.game.width / 2) - this.width * 0.5
         this.y = this.game.height - this.height - this.game.height * 0.02

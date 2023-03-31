@@ -6,7 +6,7 @@ const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 
 
-canvas.width = 700 //window.innerWidth
+canvas.width = 600 //window.innerWidth
 canvas.height = 700 // window.innerHeight
 
 const game = new Game(canvas.width, canvas.height)
@@ -17,7 +17,7 @@ let canvasPosition = canvas.getBoundingClientRect()
 window.addEventListener('load', ()=> {
 
     window.addEventListener('resize', () => {
-        canvas.width = 700 //window.innerWidth
+        canvas.width = 600 //window.innerWidth
         canvas.height = 700 //window.innerHeight
         game.width = canvas.width
         game.height = canvas.height

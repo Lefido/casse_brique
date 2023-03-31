@@ -7,7 +7,7 @@ export class Balle {
         this.y = y
         this.speedValide = true
    
-        this.size = Math.random() * 5 + 5
+        this.size = Math.random() * 6 + 5
         this.vx = Math.random() * 15 - 7.5
         this.vy = Math.random() * 20 - 10
                 
